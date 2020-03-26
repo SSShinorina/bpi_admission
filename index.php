@@ -9,13 +9,13 @@
         <legend>Admission
         </legend>
         <label>Admission Fee:
-            <input type="checkbox"  name="a_fee_yes">
+            <input type="checkbox"  name="a_fee_yes" value="Yes">
             Yes
-            <input type="checkbox"   name="a_fee_no">
+            <input type="checkbox"   name="a_fee_no" value="No">
             No
         </label><br>
-        <label>Semester Fee:</label>
-        <input type="text" name="sem_fee">
+        <label>Semester Fee:
+        <input type="text" name="sem_fee"></label>
         <br>
         <label>Admission Date:
             <input type="date" name="a_date" placeholder="Must Enter Admission Date"></label><br>
@@ -25,7 +25,7 @@
         <label>Student Name (Bangla):
             <input type="text" name="st_nm_bangla" placeholder="Enter Student Name Here In Bangla" required></label><br>
         <label>Upload Photo:</label>
-        <input type="file" name="p_file">
+        <input type="file" name="p_file" id="file">
         <br>
         <label>Student Name:
             <input type="text" name="st_nm" placeholder="Enter Student Name Here" required></label><br>
@@ -53,9 +53,9 @@
         </select></label><br>
 
         <label>Admission Approval:
-            <input type="checkbox"  name="a_a_yes">
+            <input type="checkbox"  name="a_a_yes" value="Yes">
             Yes
-            <input type="checkbox"  name="a_a_no">
+            <input type="checkbox"  name="a_a_no" value="No">
             No
         </label><br>
         <label>User ID:
@@ -65,9 +65,9 @@
 
 
         <label>Gender:
-            <input type="checkbox" name="female">
+            <input type="checkbox" name="female" value="Female">
             Female
-            <input type="checkbox" name="male">
+            <input type="checkbox" name="male" value="Male">
             Male
         </label><br>
         <label>Date Of Birth:
@@ -109,27 +109,27 @@
         </select></label><br>
 
         <label>Passport Photo:
-            <input type="checkbox" name="p_p_yes">
+            <input type="checkbox" name="p_p_yes" value="Yes">
             Yes
-            <input type="checkbox" name="p_p_no">
+            <input type="checkbox" name="p_p_no" value="No">
             No
         </label><br>
         <label>Upload Testimonial:</label>
-        <input type="file" name="t_file">
+        <input type="file" name="t_file" id="file">
         <br>
         <label>Upload Original Mark Sheet:</label>
-        <input type="file" name="m_file">
+        <input type="file" name="m_file" id="file">
         <br>
         <label>Remark:
-            <input type="checkbox" name="r_yes">
+            <input type="checkbox" name="r_yes" value="Yes">
             Yes
-            <input type="checkbox" name="r_no">
+            <input type="checkbox" name="r_no" value="No">
             No
         </label><br>
         <label>Remark Pay:
-            <input type="checkbox" name="re_yes">
+            <input type="checkbox" name="re_yes" value="Yes">
             Yes
-            <input type="checkbox" name="re_no">
+            <input type="checkbox" name="re_no" value="No">
             No
         </label><br>
         <label>Payment ID:
@@ -165,7 +165,7 @@
             <input type="text" maxlength="11" name="ref_st_mobile" placeholder="Enter Referred Student Mobile"></label><br>
 
 
-        <input type="submit">
+        <input type="submit" name="submit">
         
     </fieldset> 
     </form>
@@ -173,3 +173,5 @@
     
     
 </html>
+
+
