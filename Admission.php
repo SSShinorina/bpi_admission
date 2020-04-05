@@ -17,10 +17,11 @@ class Admission
     public $ssc_year;
     public $ssc_gpa;
     public $technology;
+    public $id;
     public $a_a_yes;
     public $u_id;
     public $application_id;
-    public $female;
+    public $gender;
     public $dob;
     public $country;
     public $st_mobile;
@@ -46,7 +47,6 @@ class Admission
     public $city;
     public $state;
     public $postal;
-    
 
     public function setData($data = '')
     {
@@ -63,6 +63,7 @@ class Admission
         if (array_key_exists('c_roll', $data)) {
             $this->c_roll = $data['c_roll'];
         }
+
         if (array_key_exists('st_nm_bangla', $data)) {
             $this->st_nm_bangla = $data['st_nm_bangla'];
         }
@@ -93,6 +94,9 @@ class Admission
         if (array_key_exists('technology', $data)) {
             $this->technology = $data['technology'];
         }
+        if (array_key_exists('id', $data)) {
+            $this->id = $data['id'];
+        }
         if (array_key_exists('a_a_yes', $data)) {
             $this->a_a_yes = $data['a_a_yes'];
         }
@@ -103,8 +107,8 @@ class Admission
         if (array_key_exists('application_id', $data)) {
             $this->application_id = $data['application_id'];
         }
-        if (array_key_exists('female', $data)) {
-            $this->female = $data['female'];
+        if (array_key_exists('gender', $data)) {
+            $this->gender = $data['gender'];
         }
 
         if (array_key_exists('dob', $data)) {
@@ -147,10 +151,10 @@ class Admission
         }
 
         if (array_key_exists('pay_id', $data)) {
-        $this->pay_id = $data['pay_id'];
+            $this->pay_id = $data['pay_id'];
         }
         if (array_key_exists('institute', $data)) {
-        $this->institute = $data['institute'];
+            $this->institute = $data['institute'];
         }
         if (array_key_exists('ref_st_nm', $data)) {
             $this->ref_st_nm = $data['ref_st_nm'];
@@ -177,7 +181,7 @@ class Admission
             $this->city = $data['city'];
         }
         if (array_key_exists('state', $data)) {
-        $this->state = $data['state'];
+            $this->state = $data['state'];
         }
         if (array_key_exists('postal', $data)) {
             $this->postal = $data['postal'];
@@ -186,6 +190,7 @@ class Admission
             $this->ref_by = $data['ref_by'];
         }
 
+
     }
 
     public function store()
@@ -193,24 +198,25 @@ class Admission
         try {
             $pdo = new PDO('mysql:host=localhost;dbname=admission', 'root', '');
 
-            $sql = "INSERT INTO `form`(`id`,`a_fee`,`sem_fee`,`a_date`, `c_roll`, `st_nm_bangla`,`st_nm`,`f_nm`,`m_nm`,`ssc_roll`,`ssc_reg`,
+            $sql = "INSERT INTO `form`(`id`,`a_fee`,`sem_fee`,`a_date` ,`c_roll`, `st_nm_bangla`,`st_nm`,`f_nm`,`m_nm`,`ssc_roll`,`ssc_reg`,
 `ssc_year`,`ssc_gpa`,`tech`,`u_id`,`a_id`,`gender`,`dob`,`country`,`st_number`,`f_number`,`m_number`,`g_number`,`ssc_board`,`payment_id`,
 `reffered_by`,`a_institute`,`ref_st_nm`,`ref_st_tech`,`ref_st_roll`,`ref_st_session`,`ref_st_mobile`,`street`,`address`,`city`,`state`,`postal`,
- `a_approval`,`pp_photo`,`remark`,`remark_pay`,`u_photo`,`u_testimonial`,`u_mark`)
- VALUES (:id,:a_fee,:sem_fee,:a_date,:c_roll,:st_nm_bangla,:st_nm,:fname,:mname,:ssc_roll,:ssc_reg,:ssc_year,:ssc_gpa,:technology,
+ `a_approval`,`pp_photo`,`remark`,`remark_pay`,`u_photo`,`u_testimonial`,`u_mark` )
+ VALUES (:id,:a_fee,:sem_fee,:a_date,:c_roll, :st_nm_bangla,:st_nm,:fname,:mname,:ssc_roll,:ssc_reg,:ssc_year,:ssc_gpa,:technology,
 :u_id,:a_id,:gender,:dob,:country,:st_mobile,:f_mobile,:m_mobile,:g_mobile,:board,:pay_id,:ref_by,:institute,:ref_st_nm,:ref_st_tech,
 :ref_st_roll,:ref_st_session,:ref_st_mobile,:street,:address,:city,:state,:postal,:a_approval,:pp_photo,:remark,:remark_pay,:u_photo,:u_testimonial,
 :u_mark)";
 
+
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array(
                 ':id' => null,
-                ':a_fee'=>$this->a_fee_yes,
-                ':sem_fee'=>$this->sem_fee,
+                ':a_fee' => $this->a_fee_yes,
+                ':sem_fee' => $this->sem_fee,
                 ':a_date' => $this->a_date,
-                ':c_roll' => $this->c_roll,
+                ':c_roll'=>$this->c_roll,
                 ':st_nm_bangla' => $this->st_nm_bangla,
-                ':st_nm'=>$this->st_nm,
+                ':st_nm' => $this->st_nm,
                 ':fname' => $this->fname,
                 ':mname' => $this->mname,
                 ':ssc_roll' => $this->ssc_roll,
@@ -220,7 +226,7 @@ class Admission
                 ':technology' => $this->technology,
                 ':u_id' => $this->u_id,
                 ':a_id' => $this->application_id,
-                ':gender' => $this->female,
+                ':gender' => $this->gender,
                 ':dob' => $this->dob,
                 ':country' => $this->country,
                 ':st_mobile' => $this->st_mobile,
@@ -232,7 +238,7 @@ class Admission
                 ':ref_by' => $this->ref_by,
                 ':institute' => $this->institute,
                 ':ref_st_nm' => $this->ref_st_nm,
-                ':ref_st_tech' =>$this->ref_st_tech,
+                ':ref_st_tech' => $this->ref_st_tech,
                 ':ref_st_roll' => $this->ref_st_roll,
                 ':ref_st_session' => $this->ref_st_session,
                 ':ref_st_mobile' => $this->ref_st_mobile,
@@ -241,16 +247,13 @@ class Admission
                 ':city' => $this->city,
                 ':state' => $this->state,
                 ':postal' => $this->postal,
-                ':a_approval'=>$this->a_a_yes,
-                ':pp_photo'=>$this->p_p_yes,
-                ':remark'=>$this->r_yes,
-                ':remark_pay'=>$this->re_yes,
-                ':u_photo'=>$this->p_file,
-                ':u_testimonial'=>$this->t_file,
-                ':u_mark'=>$this->m_file
-
-
-
+                ':a_approval' => $this->a_a_yes,
+                ':pp_photo' => $this->p_p_yes,
+                ':remark' => $this->r_yes,
+                ':remark_pay' => $this->re_yes,
+                ':u_photo' => $this->p_file,
+                ':u_testimonial' => $this->t_file,
+                ':u_mark' => $this->m_file
             ));
 
 
@@ -260,22 +263,43 @@ class Admission
 
     }
 
+    public function search($search=''){
+        $pdo = new PDO('mysql:host=localhost;dbname=admission', 'root', '');
+        $sql = "SELECT * FROM `form` where `tech`='$search'";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+
     public function show()
     {
 //        $email = $info['email'];
 //        $password = $info['password'];
         $pdo = new PDO('mysql:host=localhost;dbname=admission', 'root', '');
-        $sql = "SELECT * FROM `form` where `id`=12";
+        $sql = "SELECT * FROM `form`";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        $data=$stmt->fetch();
+        $data = $stmt->fetchAll();
         return $data;
 
     }
 
+    public function roll( ){
+        $pdo = new PDO('mysql:host=localhost;dbname=admission', 'root', '');
 
 
 
+
+        $sqlAll="SELECT count(`tech`) FROM `form` WHERE `tech` = '$this->technology'";
+        $result = $pdo->prepare($sqlAll);
+        $result -> execute();
+        $data1=$result->rowCount();
+        return $data1;
+
+    }
 
 
 }
+
+

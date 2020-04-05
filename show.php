@@ -1,10 +1,21 @@
 <?php
 include_once ("../src/Admission.php");
 $obj1=new Admission();
-$items=$obj1->show();
+
+if(!empty($_GET['search'])){
+    $search=$_GET['search'];
+    $items=$obj1->search($search);
+}
+else{
+    $items=$obj1->show();
+}
 ?>
 <html>
 
+<form action="show.php" method="get">
+    <input type="text" name="search">
+    <input type="submit" value="Search">
+</form>
 
 <table border="1">
     <tr>
@@ -106,7 +117,9 @@ foreach ($items as $data){
         <td><?php echo $data['ref_st_mobile'] ?></td>
     </tr>
     
-    <?php } ?>
+    <?php }
+
+ ?>
 
 </table>
 
